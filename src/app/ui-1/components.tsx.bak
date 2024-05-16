@@ -49,7 +49,7 @@ function ShadcnPage(props: any) {
   return (
     <>
       <div className="bg-primary text-primary-foreground pl-1 pr-1 flex justify-between demo">
-        <p>Hello!!!</p>
+        <p>Hello</p>
         <p>ui-21</p>
         <p>{userInfo?.avatar}</p>
       </div>
