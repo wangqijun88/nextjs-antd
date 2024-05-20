@@ -80,7 +80,7 @@ const getLevelKeys = (items1: LevelKeysProps[]) => {
 const levelKeys = getLevelKeys(items as LevelKeysProps[]);
 
 const getDefaultkey = (currentPath: string) => {
-  let key: string = Object.keys(URL_CONFIG).filter(item => URL_CONFIG[item] === currentPath)[0]
+  let key: string = Object.keys(URL_CONFIG).filter(item => URL_CONFIG[item] === currentPath)[0] || '1'
   const curDefaultKeys: string = key.split('')[0]
   return { key, curDefaultKeys }
 }
