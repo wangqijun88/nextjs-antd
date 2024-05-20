@@ -18,3 +18,8 @@
   background-size: auto 100%;
   cursor: pointer;
 }
+@media (min-width: 1294px) {
+  .banner-item {
+    padding-top: 180px;
+  }
+}
