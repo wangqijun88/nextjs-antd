@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { use, useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+
 import Link from 'next/link';
 import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
+  DashboardOutlined,
+  TeamOutlined,
+  LoginOutlined
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
@@ -33,45 +34,28 @@ function getItem(
 type UrlConfig = {
   [key: string]: string;
 };
+
+type RouteConfig = {
+  key: string,
+  curDefaultKeys: string
+}
+
 const URL_CONFIG: UrlConfig = {
-  "11": "/ui",
-  "12": "/ui-1",
-  "13": "/ui-2",
+  "1": '/',
+  "21": "/ui",
+  "22": "/ui-1",
+  "23": "/ui-2",
+  "3": '/fsad'
 };
 
 const items: MenuItem[] = [
-  getItem(
-    "Navigation One",
-    "1",
-    <MailOutlined />,
-    [
-      getItem("Option 1", "11"),
-      getItem("Option 2", "12"),
-      getItem("Option 3", "13"),
-      getItem("Option 4", "14"),
-    ],
-    "/items"
-  ),
-  getItem("Navigation Two", "2", <AppstoreOutlined />, [
-    getItem("Option 1", "21"),
-    getItem("Option 2", "22"),
-    getItem("Submenu", "23", null, [
-      getItem("Option 1", "231"),
-      getItem("Option 2", "232"),
-      getItem("Option 3", "233"),
-    ]),
-    getItem("Submenu 2", "24", null, [
-      getItem("Option 1", "241"),
-      getItem("Option 2", "242"),
-      getItem("Option 3", "243"),
-    ]),
+  getItem("home", "1", <DashboardOutlined />),
+  getItem("Family", "2", <TeamOutlined />, [
+    getItem("Member", "21"),
+    getItem("Important note", "22"),
+    getItem("Multimedia", "23"),
   ]),
-  getItem("Navigation Three", "3", <SettingOutlined />, [
-    getItem("Option 1", "31"),
-    getItem("Option 2", "32"),
-    getItem("Option 3", "33"),
-    getItem("Option 4", "34"),
-  ]),
+  getItem("Other", "3", <LoginOutlined />),
 ];
 
 interface LevelKeysProps {
@@ -95,12 +79,18 @@ const getLevelKeys = (items1: LevelKeysProps[]) => {
 };
 const levelKeys = getLevelKeys(items as LevelKeysProps[]);
 
+const getDefaultkey = (currentPath: string) => {
+  let key: string = Object.keys(URL_CONFIG).filter(item => URL_CONFIG[item] === currentPath)[0]
+  const curDefaultKeys: string = key.split('')[0]
+  return { key, curDefaultKeys }
+}
 const App: React.FC = () => {
-  const [stateOpenKeys, setStateOpenKeys] = useState(["1"]);
+  const currentPath = usePathname()
+  const routeInfo: RouteConfig = getDefaultkey(currentPath)
+  const [stateOpenKeys, setStateOpenKeys] = useState([routeInfo.curDefaultKeys])
+  const [defaultKeys, setDefaultKeys] = useState([routeInfo.key])
   const route = useRouter();
-  useEffect(() => {
-    console.log("stateOpenKeys", stateOpenKeys);
-  }, [stateOpenKeys]);
+
 
   const onOpenChange: MenuProps["onOpenChange"] = (openKeys) => {
     const currentOpenKey = openKeys.find(
@@ -133,7 +123,7 @@ const App: React.FC = () => {
   return (
     <Menu
       mode="inline"
-      defaultSelectedKeys={["11"]}
+      defaultSelectedKeys={defaultKeys}
       openKeys={stateOpenKeys}
       onOpenChange={onOpenChange}
       style={{ width: 256 }}

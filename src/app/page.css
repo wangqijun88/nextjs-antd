@@ -1,0 +1,20 @@
+.page-wrapper {
+  padding: 24px;
+  width: 100%;
+}
+.carousel-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.05);
+}
+.carousel-wrapper .ant-carousel {
+  border-radius: 12px;
+  background-color: #fff;
+  overflow: hidden;
+}
+.banner-item {
+  padding-top: 17.20430107526882%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: auto 100%;
+  cursor: pointer;
+}
