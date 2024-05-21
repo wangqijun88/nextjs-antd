@@ -1,7 +1,12 @@
 .page-wrapper {
-  padding: 24px;
   width: 100%;
+  min-height: 600px;
+  overflow: hidden;
 }
+
+
+
+
 .carousel-wrapper {
   border-radius: 12px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.05);

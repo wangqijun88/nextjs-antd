@@ -121,15 +121,17 @@ const App: React.FC = () => {
   };
 
   return (
-    <Menu
-      mode="inline"
-      defaultSelectedKeys={defaultKeys}
-      openKeys={stateOpenKeys}
-      onOpenChange={onOpenChange}
-      style={{ width: 256 }}
-      items={items}
-      onClick={onMenuClick}
-    />
+    <div className="sticky top-[40px] h-[calc(100vh-40px)]">
+      <Menu
+        mode="inline"
+        defaultSelectedKeys={defaultKeys}
+        openKeys={stateOpenKeys}
+        onOpenChange={onOpenChange}
+        style={{ width: 256, borderRight: 'none' }}
+        items={items}
+        onClick={onMenuClick}
+      />
+    </div>
   );
 };
 

@@ -5,7 +5,8 @@ import './layout.css'
 export default function Layout({ children }) {
   return (
     <div className='layout '>
-      <div className='page-inner flex h-2.5 pr-1'>
+      <div className='page-top-title'>top</div>
+      <div className='page-inner flex'>
         <div className='page-left'>
           <Menu />
         </div>
